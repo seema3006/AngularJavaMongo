@@ -1,0 +1,61 @@
+<!doctype html>
+<html data-ng-app="searchEmpApp">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+  </head>
+  <script>
+  angular.module("searchEmpApp", []).controller("SearchEmpController", function($scope,$http) {
+	 // window.alert("in controller");
+	  $scope.searchEmp=function()
+	  {
+		//window.alert("in createUser");
+			  $http({
+	      method: 'POST',
+	      url: 'http://localhost:8080/angularPrj/searchEmp',
+	      headers: {'Content-Type': 'application/json'},
+	      data:  $scope.user
+	    }).success(function (data) 
+	      {
+	    	window.alert("success  : "+data);
+	    	$scope.status=data;
+	    	
+	      });
+		
+		
+	  }
+  });
+  </script>  
+  
+  <body>
+   <div data-ng-controller="SearchEmpController">
+  
+    <form method="post" name="addUserFrm">
+     <label>Search Employee</label>
+ 
+      <label>First Name: </label> 
+      <input type="text" id="name" name="firstName" data-ng-model="firstName" placeholder="User Name"> 
+ 
+      <label>Last Name:</label>
+      <input type="text" id="pwd" name="lastName" data-ng-model="lastName" placeholder="Last Name">
+ 
+      <input type="submit" name="Search"  data-ng-click="searchEmp()"/>
+      
+      
+      <br/>
+     
+     
+   
+   <ul>
+<li data-ng-repeat="employee in status |filter:firstName|filter:lastName">
+{{employee.firstName | uppercase }}  - {{employee.lastName | lowercase }}
+{{employee.deptId  }}  - {{employee.salary }}
+
+</ul>
+   
+   
+   
+    </form>
+    </div>
+  </body>
+ 
+</html>

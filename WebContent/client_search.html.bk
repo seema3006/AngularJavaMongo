@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html data-ng-app="clientSearchApp1">
+<head>
+<meta charset="UTF-8">
+<title>Client Search</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+</head>
+<script>
+  var clientSearchApp=angular.module('clientSearchApp1', []);
+  clientSearchApp1.controller('clientSearchCtrl', function($scope)
+		  {
+	      $scope.clients=[
+	                    {name:'Goldman Sachs', country:'USA'},
+	                    {name:'Deutsche Bank',country:'Germany'},
+	                    {name:'UBS',country:'Switzerland'}];
+		  }
+  );
+</script>
+
+<body data-ng-controller="clientSearchCtrl">
+Name: <input type="text" data-ng-model="searchclientName">
+{{searchclientName}}
+<ul>
+<li data-ng-repeat="client in clients | filter:searchclientName">
+{{client.name | uppercase }}  - {{client.country | lowercase }}
+</ul>
+</body>
+</html>

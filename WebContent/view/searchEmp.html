@@ -1,0 +1,32 @@
+  <!-- div data-ng-controller="SearchEmpController" -->
+  
+  <div>
+    <form method="post" name="addUserFrm">
+     <label>Search Employee</label>
+      <br/>
+      <label>First Name: </label> 
+      <input type="text" id="name" name="firstName" data-ng-model="firstName" placeholder="User Name"> 
+ 
+      <label>Last Name:</label>
+      <input type="text" id="pwd" name="lastName" data-ng-model="lastName" placeholder="Last Name">
+ 
+      <input type="submit" name="Search"  data-ng-click="searchEmp()"/>
+      
+      
+      <br/>
+     
+     
+   
+   <ul>
+<li data-ng-repeat="employee in status |filter:firstName|filter:lastName">
+{{employee.firstName | uppercase }}  - {{employee.lastName | lowercase }}
+{{employee.deptId  }}  - {{employee.salary }}
+
+</ul>
+   
+   
+   
+    </form>
+    </div>
+    
+ 
